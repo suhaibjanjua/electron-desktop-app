@@ -37,6 +37,9 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm install
+        
+      - name: Install dependencies
+        run: npm install electron-builder -g
 
       - name: Build
         run: electron-builder -w 
