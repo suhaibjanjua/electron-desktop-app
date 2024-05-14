@@ -1,6 +1,37 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow ,autoUpdater} = require('electron')
 const path = require('node:path')
+
+
+// Set the URL where the latest version of your app is hosted
+const updateUrl = 'https://github.com/electron/electron-quick-start'
+
+// Check for updates when the app is ready
+app.whenReady().then(() => {
+  autoUpdater.setFeedURL(updateUrl)
+  autoUpdater.checkForUpdates()
+})
+
+// Listen for update download progress events
+autoUpdater.on('download-progress', (progress) => {
+  console.log(`Download progress: ${progress.percent}%`)
+})
+
+// Listen for update downloaded events
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Update Available',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'A new version of the app is available. Restarting the app will install the update.'
+  }
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
+})
+
 
 function createWindow () {
   // Create the browser window.
