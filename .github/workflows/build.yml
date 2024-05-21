@@ -47,6 +47,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Debug Environment Variables
+        run: |
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+          echo "GH_TOKEN: $GH_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.Owner_Token }}
+          GH_TOKEN: ${{ secrets.Owner_Token }}
+
       - name: Build
         run: electron-builder -w 
 
