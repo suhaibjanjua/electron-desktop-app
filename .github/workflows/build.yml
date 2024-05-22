@@ -56,7 +56,7 @@ jobs:
           GH_TOKEN: ${{ secrets.Owner_Token }}
 
       - name: Build
-        run: electron-builder -w 
+        run: electron-builder -w --token ${{ secrets.Owner_Token }}
 
       - name: Create Release
         id: create_release
