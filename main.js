@@ -4,7 +4,7 @@ const path = require('node:path')
 
 
 // Set the URL where the latest version of your app is hosted
-const updateUrl = 'https://github.com/electron/electron-quick-start'
+const updateUrl = 'https://github.com/Hamzaa-Amjad/electron-desktop-app'
 
 // Check for updates when the app is ready
 app.whenReady().then(() => {
