@@ -58,7 +58,6 @@ jobs:
       - name: List dist directory and Verify Asset Path
         run: |
           ls -la dist
-          ls -la "dist/electron-desktop-app Setup 1.0.3.exe"
 
       - name: Create Release
         id: create_release
