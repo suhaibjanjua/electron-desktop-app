@@ -67,8 +67,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
           GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
         with:
-          tag_name: v1.0.3  # Updated to a new version
-          release_name: Release v1.0.3  # Updated to match the new version
+          tag_name: v1.0.4  # Updated to a new version
+          release_name: Release v1.0.4  # Updated to match the new version
           draft: false
           prerelease: false
 
@@ -80,6 +80,6 @@ jobs:
           GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "dist/electron-desktop-app Setup 1.0.3.exe"  # Update to use backslashes
-          asset_name: electron-quick-start-Setup-1.0.3.exe
+          asset_path: "dist/electron-desktop-app Setup 1.0.4.exe"  # Update to use backslashes
+          asset_name: electron-quick-start-Setup-1.0.4.exe
           asset_content_type: application/octet-stream

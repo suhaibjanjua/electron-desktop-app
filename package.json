@@ -1,6 +1,6 @@
 {
   "name": "electron-desktop-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A minimal Electron application for building desktop applications with auto-update functionality. This starter kit provides a quick setup for Electron-based projects, focusing on simplicity and efficiency. Utilizing Electron's powerful capabilities, this application template serves as a foundation for creating cross-platform desktop apps. With integrated auto-update features, it enables seamless distribution of updates to users, ensuring they always have the latest version. Get started with Electron-Desktop-App and streamline your desktop app development process.",
   "main": "main.js",
   "scripts": {
