@@ -73,8 +73,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
           GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: v1.0.1  # Update this to a new version
+          release_name: Release v1.0.1  # Update this to match the new version
           draft: false
           prerelease: false
 
@@ -86,6 +86,6 @@ jobs:
           GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/electron-quick-start-Setup-1.0.0.exe  # Use the actual file name
-          asset_name: electron-quick-start-Setup-1.0.0.exe  # Use the actual file name
+          asset_path: dist/electron-quick-start\ Setup\ 1.0.0.exe  # Corrected file path
+          asset_name: electron-quick-start-Setup-1.0.0.exe  # Corrected file name
           asset_content_type: application/octet-stream
