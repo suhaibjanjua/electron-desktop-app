@@ -55,8 +55,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
           GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
 
-      - name: List dist directory
-        run: ls -la dist
+      - name: List dist directory and Verify Asset Path
+        run: |
+          ls -la dist
+          ls -la dist/electron-quick-start\ Setup\ 1.0.3.exe
 
       - name: Create Release
         id: create_release
