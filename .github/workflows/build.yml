@@ -1,0 +1,84 @@
+name: npm-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**/README.md'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  npm-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install Wine and enable multiarch
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y wine32
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install electron-builder
+        run: npm install electron-builder -g
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: |
+          export GH_TOKEN=${{ secrets.OWNER_TOKEN }}
+          electron-builder -w
+        env:
+          GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
+          GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
+
+      - name: List dist directory and Verify Asset Path
+        run: |
+          ls -la dist
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
+          GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
+        with:
+          tag_name: v1.0.4  # Updated to a new version
+          release_name: Release v1.0.4  # Updated to match the new version
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
+          GH_TOKEN: ${{ secrets.OWNER_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "dist/electron-desktop-app Setup 1.0.4.exe"  # Update to use backslashes
+          asset_name: electron-quick-start-Setup-1.0.4.exe
+          asset_content_type: application/octet-stream

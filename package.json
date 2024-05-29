@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
-  "version": "2.0.0",
-  "description": "A minimal Electron application",
+  "name": "electron-desktop-app",
+  "version": "1.0.4",
+  "description": "A minimal Electron application for building desktop applications with auto-update functionality. This starter kit provides a quick setup for Electron-based projects, focusing on simplicity and efficiency. Utilizing Electron's powerful capabilities, this application template serves as a foundation for creating cross-platform desktop apps. With integrated auto-update features, it enables seamless distribution of updates to users, ensuring they always have the latest version. Get started with Electron-Desktop-App and streamline your desktop app development process.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -20,5 +20,9 @@
   "devDependencies": {
     "electron": "^30.0.3",
     "electron-builder": "^24.13.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/hamzaa-amjad/electron-desktop-app/issues"
+  },
+  "homepage": "https://github.com/hamzaa-amjad/electron-desktop-app#readme"
 }
