@@ -1,12 +1,13 @@
 {
   "name": "electron-quick-start",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package":"electron-builder -p always"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Hamzaa-Amjad/electron-desktop-app",
   "keywords": [
     "Electron",
     "quick",

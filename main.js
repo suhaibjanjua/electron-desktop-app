@@ -1,10 +1,10 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow ,autoUpdater} = require('electron')
+const { app, BrowserWindow ,autoUpdater,desktopCapturer,ipcMain} = require('electron')
 const path = require('node:path')
 
 
 // Set the URL where the latest version of your app is hosted
-const updateUrl = 'https://github.com/electron/electron-quick-start'
+const updateUrl = 'https://github.com/Hamzaa-Amjad/electron-desktop-app'
 
 // Check for updates when the app is ready
 app.whenReady().then(() => {
@@ -72,3 +72,9 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipcMain.handle('get-sources', async () => {
+  const sources = await desktopCapturer.getSources({ types: ['screen', 'window'] });
+  console.log("getSources in app.js");
+  console.log("sources:::",sources)
+  return sources;
+});
